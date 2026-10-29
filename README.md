@@ -69,13 +69,13 @@ Este proyecto es de carácter académico y está destinado al uso exclusivo en l
 
 Este proyecto utiliza la estrategia de ramificación **Git Flow**:
 
-| Rama | Propósito |
-|------|-----------|
-| `main` | Código estable en producción |
-| `develop` | Integración del desarrollo activo |
-| `feature/*` | Desarrollo de funcionalidades |
-| `release/*` | Preparación de versiones |
-| `hotfix/*` | Correcciones urgentes |
+<p align="center">
+  <img src="docs/ramas git flow.png" alt="Ramas Git Flow" width="800"/>
+</p>
+
+<p align="center">
+  <img src="docs/gitflow_diagram.png" alt="Diagrama Git Flow - Sistema de Sublimación" width="800"/>
+</p>
 
  Crear las 6 feature branches desde develop
 * git checkout develop
