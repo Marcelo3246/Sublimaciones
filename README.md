@@ -148,7 +148,7 @@ proyecto-sublimacion/
 * **Lenguaje:** Python (Orientado a Objetos)
 * **Backend:** Django Framework
 * **Frontend:** HTML / CSS / JavaScript
-* **Base de Datos:** SQLite
+* **Base de Datos:** PostgreSQL
 * **Control de Versiones:** Git / GitHub
 * **Gestión de Tareas:** Trello
 
