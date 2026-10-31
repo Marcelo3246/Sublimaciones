@@ -25,11 +25,6 @@ Para garantizar la escalabilidad y el mantenimiento del sistema, este proyecto s
 * **Herencia y Polimorfismo:** Reutilización de código a través de clases base (ej. una clase `Persona` de la cual heredan `Usuario`, `Cliente` y `Proveedor`).
 * **Abstracción:** Modelado de entidades del mundo real (Venta, Producto, Insumo) en modelos de Django.
 
-> **[📝 NOTA PARA EL ALUMNO: Inserta aquí una imagen del Diagrama de Clases (UML) de tu proyecto]**
-> <p align="center">
->   <img src="docs/diagrama_clases_poo.png" alt="Diagrama de Clases POO" width="800"/>
-> </p>
-
 ---
 
 ## 👥 Organización Estructural (Equipos de Clase)
@@ -60,11 +55,6 @@ Para evitar conflictos de código, pérdida de avances y asegurar un entorno de 
 
 ### 3. Resolución de Conflictos
 * Antes de solicitar un PR, el desarrollador **debe** actualizar su rama local con la última versión de `develop` (`git pull origin develop`) y resolver cualquier conflicto de fusión (Merge Conflict) en su propia computadora.
-
-> **[📝 NOTA PARA EL ALUMNO: Inserta aquí una captura de pantalla de un ejemplo de código bien documentado o de un Pull Request en GitHub]**
-> <p align="center">
->   <img src="docs/ejemplo_buenas_practicas.png" alt="Buenas prácticas de código" width="600"/>
-> </p>
 
 ---
 
