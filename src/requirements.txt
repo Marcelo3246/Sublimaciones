@@ -1,0 +1,21 @@
+# ============================================================
+# DLL Sublimados — Dependencias del Backend
+# ============================================================
+# Framework
+Django>=6.0,<7.0
+djangorestframework>=3.15,<4.0
+djangorestframework-simplejwt>=5.3,<6.0
+django-cors-headers>=4.3,<5.0
+django-filter>=24.0
+
+# Base de datos
+psycopg2-binary>=2.9,<3.0
+
+# Configuración
+python-decouple>=3.8,<4.0
+
+# Herramientas de desarrollo (solo dev)
+# black>=24.0
+# flake8>=7.0
+# isort>=5.13
+# pytest-django>=4.8
