@@ -143,6 +143,60 @@ proyecto-sublimacion/
 
 ---
 
+## 🚀 Instalación y Entorno Virtual (venv)
+
+Para no saturar el Python global de tu sistema y asegurar que todos los equipos usen las mismas versiones de las librerías, **es obligatorio el uso de un entorno virtual (env)**.
+
+### Pasos para iniciar en tu máquina local:
+
+1. **Clonar el repositorio y situarse en la rama develop:**
+   `ash
+   git checkout develop
+   git pull origin develop
+   `
+
+2. **Crear el entorno virtual (env):**
+   `ash
+   # En la raíz del proyecto:
+   python -m venv venv
+   `
+
+3. **Activar el entorno virtual:**
+   - En **Windows (PowerShell):**
+     `powershell
+     .\venv\Scripts\Activate.ps1
+     `
+   - En **Windows (CMD):**
+     `cmd
+     .\venv\Scripts\activate.bat
+     `
+   - En **Linux / macOS:**
+     `ash
+     source venv/bin/activate
+     `
+
+4. **Instalar las dependencias encapsuladas:**
+   `ash
+   pip install -r src/requirements.txt
+   `
+
+5. **Configurar variables de entorno:**
+   - Copiar el archivo de ejemplo src/.env.example a src/.env:
+     `powershell
+     Copy-Item src\.env.example src\.env
+     `
+   - Configurar las credenciales de tu base de datos local en src/.env.
+
+6. **Aplicar las migraciones e iniciar el servidor:**
+   `ash
+   python src/manage.py migrate
+   python src/manage.py runserver
+   `
+
+> 💡 **Nota de Git:** La carpeta env/ está ignorada en el .gitignore. **Nunca se debe subir la carpeta del entorno virtual al repositorio**, solo el archivo src/requirements.txt.
+
+---
+
 ## 💻 Tecnologías Utilizadas
 
 * **Lenguaje:** Python (Orientado a Objetos)
