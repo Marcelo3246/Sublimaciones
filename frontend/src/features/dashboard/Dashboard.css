@@ -1,0 +1,2 @@
+/* Próximas entregas: las que vencen mañana se marcan en ámbar */
+.etiqueta.manana { background: var(--color-warning-bg); color: var(--color-warning); }

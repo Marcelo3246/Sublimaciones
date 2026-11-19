@@ -1,0 +1,11 @@
+/* Gráfico de ingresos de los últimos días */
+.grafico-scroll { overflow-x: auto; }
+.grafico { width: 100%; height: auto; display: block; }
+.barra { fill: var(--color-brand); }
+.guia { stroke: var(--color-border); }
+.eje { fill: var(--color-text-secondary); font-size: 11px; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 640px) {
+  /* Bajo este ancho las letras del gráfico quedarían ilegibles: se fija un mínimo y se desliza */
+  .grafico { min-width: 600px; }
+}
