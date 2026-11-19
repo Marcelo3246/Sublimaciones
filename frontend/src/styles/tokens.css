@@ -1,0 +1,40 @@
+/* Tokens tomados del archivo de Figma "Sublimados - Dirección visual" */
+:root {
+  --color-brand: #6f2dbd;
+  --color-brand-hover: #5f25a5;
+  --color-brand-active: #511f8d;
+  --color-brand-focus: #9a6fe2;
+
+  --color-bg: #f5f4f9;
+  --color-surface: #ffffff;
+  --color-text: #1c1a26;
+  --color-text-secondary: #5a566c;
+  --color-icon: #76728a;
+  --color-border: #dddbe6;
+  --color-border-strong: #908aa2;
+
+  --color-surface-muted: #faf9fd;
+  --color-chip-bg: #efedf5;
+
+  --color-danger: #c42b3c;
+  --color-danger-bg: #fdf1f2;
+  --color-warning: #b45309;
+  --color-warning-bg: #fef3c7;
+  --color-success: #15803d;
+  --color-success-bg: #e8f6ec;
+  --color-info: #1d5fb8;
+  --color-info-bg: #eaf1fb;
+  --color-brand-bg: #f1eafb;
+
+  /* Menú lateral (dashboard) */
+  --color-sidebar-bg: #3a1574;
+  --color-sidebar-text: #d9cdf2;
+  --color-accent: #f5a524;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+
+  --shadow-card: 0 1px 2px 0 rgba(53, 21, 97, 0.04), 0 2px 8px -2px rgba(53, 21, 97, 0.06);
+
+  --font-sans: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}

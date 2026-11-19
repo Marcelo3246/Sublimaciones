@@ -1,0 +1,9 @@
+.buscador { position: relative; display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; background: var(--color-surface); border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); color: var(--color-icon); }
+.buscador:focus-within { border-color: var(--color-brand-focus); box-shadow: 0 0 0 1px var(--color-brand-focus); }
+.buscador input { flex: 1; min-width: 0; height: 100%; padding: 0; border: 0; background: transparent; color: var(--color-text); font-size: 14px; }
+.buscador input:focus { outline: none; }
+.buscador input::placeholder { color: var(--color-border-strong); }
+
+@media (pointer: coarse) {
+  .buscador input { font-size: 16px; }
+}

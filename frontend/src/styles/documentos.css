@@ -1,0 +1,34 @@
+/* Documentos con líneas: la nueva venta y la nueva compra comparten este diseño
+   (tabla de líneas a la izquierda y resumen con el total a la derecha).
+   Está aquí y no en una feature porque ventas y compras se suben en ramas distintas. */
+.venta { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start; }
+.venta-resumen { position: sticky; top: 20px; }
+.tabla-lineas td { padding-block: 10px; vertical-align: top; }
+.tabla-lineas td:first-child { min-width: 240px; }
+.tabla-lineas .control.num { width: 96px; }
+.tabla-lineas td.num:nth-child(4) { padding-top: 18px; }
+.tabla-lineas small { margin-top: 4px; }
+.venta-agregar { display: flex; align-items: center; gap: 16px; padding: 12px 24px 16px; border-top: 1px solid var(--color-border); }
+.venta-total { display: flex; align-items: baseline; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--color-border); }
+.venta-total span { color: var(--color-text-secondary); font-weight: 500; }
+.venta-total strong { font-size: 28px; line-height: 36px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 1100px) {
+  .venta { grid-template-columns: 1fr; }
+  .venta-resumen { position: static; }
+}
+@media (max-width: 860px) {
+  .venta-agregar { padding-inline: 16px; }
+}
+/* En celular cada línea se apila: producto arriba y cantidad, precio y subtotal debajo */
+@media (max-width: 640px) {
+  .tabla-lineas thead { display: none; }
+  .tabla-lineas, .tabla-lineas tbody { display: block; }
+  .tabla-lineas tr { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 8px 10px; align-items: end; padding: 14px 16px; border-top: 1px solid var(--color-border); }
+  .tabla-lineas tr:first-child { border-top: 0; }
+  .tabla.tabla-lineas td { display: block; padding: 0 !important; border: 0; text-align: left; }
+  .tabla-lineas td:first-child { grid-column: 1 / -1; min-width: 0; }
+  .tabla-lineas td[data-etiqueta]::before { content: attr(data-etiqueta); display: block; margin-bottom: 6px; color: var(--color-text-secondary); font-size: 12px; font-weight: 500; }
+  .tabla-lineas .control.num { width: 100%; }
+  .tabla-lineas td.num:nth-child(4) { padding-bottom: 8px !important; font-variant-numeric: tabular-nums; }
+}

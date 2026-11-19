@@ -1,0 +1,26 @@
+/* Listas y tablas: las usan casi todas las pantallas.
+   Los ajustes propios de una pantalla (columnas centradas, colores de cantidades)
+   están en el .css de esa pantalla. */
+.lista { list-style: none; margin: 0; padding: 0; }
+.lista li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 24px; border-bottom: 1px solid var(--color-border); }
+.lista li:last-child { border-bottom: 0; }
+.lista b { display: block; font-weight: 500; font-variant-numeric: tabular-nums; }
+.lista small { color: var(--color-text-secondary); font-size: 13px; }
+
+.tabla-scroll { position: relative; overflow-x: auto; }
+.tabla { width: 100%; border-collapse: collapse; }
+.tabla th { padding: 8px 24px; background: var(--color-surface-muted); color: var(--color-text-secondary); font-size: 12px; font-weight: 500; text-align: left; white-space: nowrap; }
+.tabla td { padding: 12px 24px; border-top: 1px solid var(--color-border); vertical-align: middle; }
+.tabla th:last-child, .tabla td:last-child { text-align: right; }
+.tabla small { display: block; color: var(--color-text-secondary); font-size: 13px; }
+.tabla .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tabla tr.inactiva td { color: var(--color-text-secondary); }
+.tabla tr.clicable { cursor: pointer; }
+.tabla tr.clicable:hover td { background: var(--color-surface-muted); }
+.tabla-acciones { display: inline-flex; gap: 4px; justify-content: flex-end; }
+.tabla tfoot td { font-weight: 600; background: var(--color-surface-muted); }
+.tabla .sin-salto { white-space: nowrap; }
+
+@media (max-width: 860px) {
+  .tabla th, .tabla td { padding-inline: 16px; }
+}

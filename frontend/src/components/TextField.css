@@ -1,0 +1,120 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.field__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 16px;
+}
+
+.field__label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.1px;
+  color: var(--color-text);
+}
+
+.field__control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 6px 0 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+/* En Figma el foco es un borde de 2px #9a6fe2; el box-shadow lo imita sin mover el contenido. */
+.field__control:focus-within {
+  border-color: var(--color-brand-focus);
+  box-shadow: 0 0 0 1px var(--color-brand-focus);
+}
+
+.field__control--invalid,
+.field__control--invalid:focus-within {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 1px var(--color-danger);
+}
+
+.field__icon {
+  flex: none;
+  display: block;
+}
+
+.field__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text);
+}
+
+.field__input:focus,
+.field__input:focus-visible {
+  outline: none;
+}
+
+.field__input::placeholder {
+  color: var(--color-border-strong);
+}
+
+.field__error {
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-danger);
+}
+
+.icon-button {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background: var(--color-bg);
+}
+
+/* Pantallas táctiles: el aspecto se mantiene igual que en Figma, solo cambia lo que no se ve. */
+@media (pointer: coarse) {
+  /* iOS Safari hace zoom al enfocar inputs con menos de 16px de letra. */
+  .field__input {
+    font-size: 16px;
+  }
+
+  /* El input crece 4px arriba y abajo (fondo transparente) para llegar a 44px de área táctil. */
+  .field__input {
+    height: 44px;
+    margin-block: -4px;
+  }
+
+  /* El botón del ojo sigue midiendo 24px, pero su área táctil es de 44x44px. */
+  .icon-button {
+    position: relative;
+  }
+
+  .icon-button::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+  }
+}

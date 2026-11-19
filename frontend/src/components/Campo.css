@@ -1,0 +1,16 @@
+/* Campo con etiqueta (Campo). La etiqueta y el error usan las clases de TextField.css.
+   "control" también se usa sola en los select de las tablas de líneas. */
+.campo { display: flex; flex-direction: column; gap: 8px; width: 100%; min-width: 0; }
+.campo .field__label span { color: var(--color-text-secondary); font-weight: 400; }
+.control { width: 100%; height: 36px; padding: 0 12px; background: var(--color-surface); border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); color: var(--color-text); font-size: 14px; line-height: 20px; transition: border-color 120ms ease, box-shadow 120ms ease; }
+select.control { padding-right: 32px; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2376728a' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+textarea.control { height: auto; min-height: 72px; padding: 8px 12px; resize: vertical; }
+.control:focus, .control:focus-visible { outline: none; border-color: var(--color-brand-focus); box-shadow: 0 0 0 1px var(--color-brand-focus); }
+.control::placeholder { color: var(--color-border-strong); }
+.control--invalido, .control--invalido:focus { border-color: var(--color-danger); box-shadow: 0 0 0 1px var(--color-danger); }
+.control:disabled { background: var(--color-bg); color: var(--color-text-secondary); }
+.control.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+@media (pointer: coarse) {
+  .control { font-size: 16px; }
+}

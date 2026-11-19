@@ -1,0 +1,9 @@
+/* Botón chico con solo ícono (editar, desactivar, cerrar) */
+.boton-icono { display: inline-grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; color: var(--color-icon); cursor: pointer; }
+.boton-icono:hover { background: var(--color-chip-bg); color: var(--color-text); }
+.boton-icono--peligro:hover { background: var(--color-danger-bg); color: var(--color-danger); }
+.boton-icono:disabled { opacity: 0.35; cursor: default; background: none; color: var(--color-icon); }
+
+@media (pointer: coarse) {
+  .boton-icono { width: 40px; height: 40px; }
+}

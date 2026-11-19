@@ -1,0 +1,70 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-focus);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.texto-secundario {
+  color: var(--color-text-secondary);
+}
+
+/* Botón o enlace con aspecto de link: "Ver todo" de los paneles, códigos en las tablas */
+.enlace { padding: 0; border: 0; background: none; color: var(--color-brand); font: inherit; font-size: 13px; font-weight: 500; white-space: nowrap; text-decoration: none; cursor: pointer; }
+.enlace:hover { text-decoration: underline; }
+
+/* Enlace chico junto a la etiqueta de un campo ("¿La olvidaste?", "Nuevo cliente") */
+.text-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--color-brand);
+  cursor: pointer;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}

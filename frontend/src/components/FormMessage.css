@@ -1,0 +1,18 @@
+/* Mensaje general de formulario (error del servidor, aviso) */
+.form-message {
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.form-message--error {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.form-message--info {
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+}

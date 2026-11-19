@@ -1,0 +1,55 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 100%;
+  padding: 48px 16px;
+}
+
+/* Tarjeta */
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 32px 32px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+/* Encabezado con el mismo estilo que la pestaña activa de Figma (sobresale 12px a cada lado) */
+.auth-header {
+  display: flex;
+  justify-content: center;
+  margin: 0 -12px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.auth-header__title {
+  margin: 0 0 -1px;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--color-brand);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--color-text);
+}
+
+/* Formularios */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (max-width: 420px) {
+  .auth-card {
+    padding: 8px 20px 24px;
+  }
+
+  .auth-header {
+    margin-inline: -8px;
+  }
+}

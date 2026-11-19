@@ -1,0 +1,103 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 36px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: var(--color-brand);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--color-brand-hover);
+}
+
+.button:active:not(:disabled) {
+  background: var(--color-brand-active);
+}
+
+/* Ancho según el texto (en el login el botón ocupa todo el ancho). */
+.button--inline {
+  width: auto;
+}
+
+.button--secondary {
+  background: var(--color-surface);
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: var(--color-bg);
+}
+
+.button--secondary:active:not(:disabled) {
+  background: var(--color-border);
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.button__spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: button-spin 700ms linear infinite;
+}
+
+@keyframes button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button__spinner {
+    animation-duration: 2s;
+  }
+}
+
+/* Pantallas táctiles: el botón se ve igual (36px) pero su área táctil llega a 44px. */
+@media (pointer: coarse) {
+  .button {
+    position: relative;
+  }
+
+  .button::after {
+    content: '';
+    position: absolute;
+    inset: -4px 0;
+  }
+}
+
+.button {
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.button:disabled:not([aria-busy]) {
+  opacity: 0.5;
+}
+
+.button--secondary .button__spinner {
+  border-color: var(--color-border);
+  border-top-color: var(--color-brand);
+}
+
+/* Variante de peligro (confirmar desactivar, anular…) */
+.button.boton-peligro { background: var(--color-danger); }
+.button.boton-peligro:hover:not(:disabled) { background: #a52232; }
+.button.boton-peligro:active:not(:disabled) { background: #8c1d2a; }

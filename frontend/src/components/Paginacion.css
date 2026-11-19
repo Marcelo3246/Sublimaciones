@@ -1,0 +1,2 @@
+.paginacion { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 24px; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: 13px; }
+.paginacion div { display: flex; gap: 8px; }

@@ -1,0 +1,19 @@
+/* Piezas de formulario que no son un componente: el orden de los campos, las
+   casillas de verificación y los grupos tipo segmento. Los campos en sí están
+   en components/Campo.css y components/TextField.css. */
+.formulario { display: flex; flex-direction: column; gap: 16px; }
+.formulario-grilla { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.formulario-grilla .completo { grid-column: 1 / -1; }
+
+.check { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
+.check input { width: 16px; height: 16px; margin: 0; accent-color: var(--color-brand); }
+
+/* Grupo de opciones tipo segmento (Entrada / Salida, Tablero / Lista) */
+.segmento { display: inline-flex; padding: 2px; border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-surface); }
+.segmento button { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border: 0; border-radius: 6px; background: none; color: var(--color-text-secondary); font-size: 13px; font-weight: 500; cursor: pointer; }
+.segmento button[aria-pressed="true"] { background: var(--color-brand); color: #fff; }
+.segmento button:not([aria-pressed="true"]):hover { background: var(--color-bg); color: var(--color-text); }
+
+@media (max-width: 640px) {
+  .formulario-grilla { grid-template-columns: 1fr; }
+}

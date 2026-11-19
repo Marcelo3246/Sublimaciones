@@ -1,0 +1,5 @@
+/* Pestañas (mismo estilo que el encabezado del login) */
+.pestanas { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--color-border); overflow-x: auto; }
+.pestana { margin-bottom: -1px; padding: 10px 12px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--color-text-secondary); font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer; }
+.pestana:hover { color: var(--color-text); }
+.pestana[aria-selected="true"] { border-bottom-color: var(--color-brand); color: var(--color-text); }

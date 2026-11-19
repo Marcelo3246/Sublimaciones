@@ -1,0 +1,102 @@
+.sb-contenedor {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.sb {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px 14px 16px;
+  background: var(--color-sidebar-bg);
+  color: var(--color-sidebar-text);
+  overflow-y: auto;
+}
+
+/* Barra con el botón de menú: solo existe en pantallas angostas */
+.sb-arriba { display: none; }
+
+.sb-cuerpo { display: flex; flex-direction: column; flex: 1; }
+
+.sb-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+
+.sb-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.sb-link:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.sb-link:focus-visible, .sb-boton:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.sb-link.is-active { background: var(--color-brand); color: #fff; font-weight: 500; }
+
+.sb-badge {
+  margin-left: auto;
+  min-width: 24px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-sidebar-bg);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Usuario y cerrar sesión, al fondo del menú */
+.sb-usuario {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 16px 4px 0 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.sb-usuario-datos { display: flex; flex-direction: column; flex: 1; min-width: 0; font-size: 13px; line-height: 18px; }
+.sb-usuario-datos strong { color: #fff; font-weight: 500; }
+.sb-usuario-datos span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Botones de ícono: cerrar sesión y abrir/cerrar menú */
+.sb-boton {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+.sb-boton:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+
+/* Celular y tablet vertical: barra superior fija; el menú se despliega con el botón */
+@media (max-width: 860px) {
+  .sb-contenedor { height: auto; width: 100%; z-index: 50; }
+  .sb { padding: 10px 12px; overflow: visible; }
+  .sb-arriba { display: flex; }
+
+  .sb-cuerpo { display: none; }
+  .abierto .sb-cuerpo {
+    display: flex;
+    max-height: calc(100vh - 60px);
+    padding-top: 12px;
+    overflow-y: auto;
+  }
+  .sb-usuario { margin-top: 12px; padding: 12px 0 4px 12px; }
+}
