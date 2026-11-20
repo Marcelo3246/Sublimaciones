@@ -41,3 +41,16 @@ desktop.ini
 # Archivos de distribución
 *.tar.gz
 *.whl
+
+# Frontend (SPA React + Vite)
+node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# Pruebas y cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.neon
