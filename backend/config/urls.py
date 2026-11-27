@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework_simplejwt.views import (
+    TokenBlacklistView,
     TokenObtainPairView,
     TokenRefreshView,
 )
@@ -15,7 +16,6 @@ urlpatterns = [
     path("api/v1/auth/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/v1/auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     # Core API
-    path("api/v1/core/", include("backend.apps.core.urls")),
     # Apps de negocio
     path("api/v1/catalog/", include("backend.apps.catalog.urls")),
     path("api/v1/inventory/", include("backend.apps.inventory.urls")),
@@ -27,6 +27,11 @@ urlpatterns = [
     path("api/v1/documents/", include("backend.apps.documents.urls")),
     path("api/v1/reports/", include("backend.apps.reports.urls")),
     path("api/v1/audit/", include("backend.apps.audit.urls")),
+    path("api/v1/auth/token/logout/",
+        TokenBlacklistView.as_view(),
+        name = "token_blacklist",
+        ),
+    path("api/v1/core/", include("backend.apps.core.urls")),
 ]
 
 if settings.DEBUG:
