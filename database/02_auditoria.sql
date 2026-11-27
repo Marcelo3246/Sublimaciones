@@ -21,7 +21,10 @@ CREATE TABLE IF NOT EXISTS auditoria.bitacora_accion (
     datos_antes    JSONB        NULL,
     datos_despues  JSONB        NULL,
     ip_origen      INET         NULL,
-    creado_en      TIMESTAMPTZ  NOT NULL DEFAULT now()
+    creado_en      TIMESTAMPTZ  NOT NULL DEFAULT now(),
+    CONSTRAINT audit_accion_tipo_ck CHECK (
+        accion IN ('INSERT', 'UPDATE', 'DELETE', 'LOGIN', 'APROBACION', 'DENEGADO')
+    )
 );
 
 CREATE INDEX IF NOT EXISTS audit_accion_usr_idx
@@ -41,7 +44,10 @@ CREATE TABLE IF NOT EXISTS auditoria.bitacora_stock (
     local_destino_id BIGINT         NULL REFERENCES nucleo.local(id) ON DELETE RESTRICT,
     usuario_id       BIGINT         NOT NULL REFERENCES nucleo.usuario(id) ON DELETE RESTRICT,
     motivo           VARCHAR(255)   NOT NULL DEFAULT '',
-    creado_en        TIMESTAMPTZ    NOT NULL DEFAULT now()
+    creado_en        TIMESTAMPTZ    NOT NULL DEFAULT now(),
+    CONSTRAINT audit_stock_tipo_ck CHECK (
+        tipo_movimiento IN ('ENTRADA', 'SALIDA', 'AJUSTE', 'TRANSFERENCIA')
+    )
 );
 
 CREATE INDEX IF NOT EXISTS audit_stk_loc_orig_idx

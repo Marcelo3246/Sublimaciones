@@ -7,7 +7,7 @@
 -- Referencias:
 --   docs/ddl/06b.3-catalogo.md
 --   docs/modelo-datos/06.3-catalogo.md
---   tasks/tareas-grupo-base-de-datos.md
+--   docs/tasks/tareas-grupo-base-de-datos.md
 -- =============================================================================
 
 CREATE SCHEMA IF NOT EXISTS catalogo;
@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS catalogo.categoria (
     activo         BOOLEAN      NOT NULL DEFAULT true,
     creado_en      TIMESTAMPTZ  NOT NULL DEFAULT now(),
     actualizado_en TIMESTAMPTZ  NOT NULL DEFAULT now(),
-    CONSTRAINT catalog_categoria_uk UNIQUE (nombre, tipo)
+    CONSTRAINT catalog_categoria_uk UNIQUE (nombre, tipo),
+    CONSTRAINT catalog_categoria_tipo_ck CHECK (tipo IN ('MATERIAL', 'PRODUCTO', 'SERVICIO'))
 );
 
 CREATE TABLE IF NOT EXISTS catalogo.subcategoria (
@@ -78,7 +79,8 @@ CREATE TABLE IF NOT EXISTS catalogo.producto (
     activo          BOOLEAN       NOT NULL DEFAULT true,
     creado_en       TIMESTAMPTZ   NOT NULL DEFAULT now(),
     actualizado_en  TIMESTAMPTZ   NOT NULL DEFAULT now(),
-    CONSTRAINT catalog_producto_codigo_uk UNIQUE (codigo)
+    CONSTRAINT catalog_producto_codigo_uk UNIQUE (codigo),
+    CONSTRAINT catalog_producto_tipo_ck CHECK (tipo IN ('TERMINADO', 'SEMITERMINADO', 'SERVICIO'))
 );
 
 -- Todo producto stockeable lleva al menos una variante (talla_id NULL = única)

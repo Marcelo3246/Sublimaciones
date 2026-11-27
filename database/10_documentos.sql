@@ -22,7 +22,13 @@ CREATE TABLE IF NOT EXISTS documentos.plantilla_documento (
     activo            BOOLEAN      NOT NULL DEFAULT true,
     creado_en         TIMESTAMPTZ  NOT NULL DEFAULT now(),
     actualizado_en    TIMESTAMPTZ  NOT NULL DEFAULT now(),
-    CONSTRAINT documents_plantilla_codigo_uk UNIQUE (codigo)
+    CONSTRAINT documents_plantilla_codigo_key UNIQUE (codigo),
+    CONSTRAINT documents_plantilla_tipo_ck CHECK (
+        tipo IN (
+            'factura', 'nota_entrega', 'orden_produccion', 'presupuesto',
+            'planilla_transferencia', 'acta_desperdicio', 'comprobante_comision'
+        )
+    )
 );
 
 CREATE TABLE IF NOT EXISTS documentos.documento (
@@ -30,7 +36,7 @@ CREATE TABLE IF NOT EXISTS documentos.documento (
     correlativo     VARCHAR(50)  NOT NULL,
     tipo_documento  VARCHAR(50)  NOT NULL,
     local_id        BIGINT       NOT NULL REFERENCES nucleo.local(id) ON DELETE RESTRICT,
-    anio            SMALLINT     NOT NULL,
+    anio            SMALLINT     NOT NULL CHECK (anio >= 0),
     plantilla_id    BIGINT       NULL REFERENCES documentos.plantilla_documento(id) ON DELETE SET NULL,
     entidad_tipo    VARCHAR(50)  NOT NULL DEFAULT '',
     entidad_id      BIGINT       NULL,
@@ -41,7 +47,14 @@ CREATE TABLE IF NOT EXISTS documentos.documento (
     estado          VARCHAR(20)  NOT NULL DEFAULT 'generado',
     creado_en       TIMESTAMPTZ  NOT NULL DEFAULT now(),
     actualizado_en  TIMESTAMPTZ  NOT NULL DEFAULT now(),
-    CONSTRAINT documents_documento_correlativo_uk UNIQUE (tipo_documento, local_id, anio, correlativo)
+    CONSTRAINT documents_documento_correlativo_uk UNIQUE (tipo_documento, local_id, anio, correlativo),
+    CONSTRAINT documents_documento_tipo_ck CHECK (
+        tipo_documento IN (
+            'factura', 'nota_entrega', 'orden_produccion', 'presupuesto',
+            'planilla_transferencia', 'acta_desperdicio', 'comprobante_comision'
+        )
+    ),
+    CONSTRAINT documents_documento_estado_ck CHECK (estado IN ('generado', 'anulado'))
 );
 
 CREATE INDEX IF NOT EXISTS documents_doc_repo_idx

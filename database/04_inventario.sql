@@ -7,7 +7,7 @@
 -- Referencias:
 --   docs/ddl/06b.4-inventario.md
 --   docs/modelo-datos/06.4-inventario.md
---   tasks/tareas-grupo-base-de-datos.md
+--   docs/tasks/tareas-grupo-base-de-datos.md
 -- =============================================================================
 
 CREATE SCHEMA IF NOT EXISTS inventario;

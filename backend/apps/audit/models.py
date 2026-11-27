@@ -55,6 +55,12 @@ class BitacoraAccion(models.Model):
                 name="audit_accion_ent_idx",
             ),
         ]
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(accion__in=AccionAuditoria.values),
+                name="audit_accion_tipo_ck",
+            ),
+        ]
 
     def __str__(self):
         usuario_str = self.usuario.nombre_usuario if self.usuario else "Sistema"
@@ -125,6 +131,12 @@ class BitacoraStock(models.Model):
             models.Index(
                 fields=["producto_id", "-creado_en"],
                 name="audit_stk_prod_idx",
+            ),
+        ]
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(tipo_movimiento__in=TipoMovimientoStock.values),
+                name="audit_stock_tipo_ck",
             ),
         ]
 

@@ -8,7 +8,7 @@
 -- Referencias:
 --   docs/ddl/06b.6-produccion.md
 --   docs/modelo-datos/06.6-produccion.md
---   tasks/tareas-grupo-base-de-datos.md
+--   docs/tasks/tareas-grupo-base-de-datos.md
 -- =============================================================================
 
 CREATE SCHEMA IF NOT EXISTS produccion;
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS produccion.maquina (
     activo             BOOLEAN       NOT NULL DEFAULT true,
     creado_en          TIMESTAMPTZ   NOT NULL DEFAULT now(),
     actualizado_en     TIMESTAMPTZ   NOT NULL DEFAULT now(),
-    CONSTRAINT production_maquina_codigo_uk UNIQUE (codigo),
+    CONSTRAINT maquina_codigo_key UNIQUE (codigo),
     CONSTRAINT production_maquina_tipo_ck
         CHECK (tipo IN ('IMPRESORA', 'PLANCHA', 'CORTADORA', 'OTRO')),
     CONSTRAINT production_maquina_estado_ck
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS produccion.orden_produccion (
     activo            BOOLEAN       NOT NULL DEFAULT true,
     creado_en         TIMESTAMPTZ   NOT NULL DEFAULT now(),
     actualizado_en    TIMESTAMPTZ   NOT NULL DEFAULT now(),
-    CONSTRAINT production_orden_codigo_uk UNIQUE (codigo),
+    CONSTRAINT orden_produccion_codigo_key UNIQUE (codigo),
     CONSTRAINT production_oc_cantidad_ck CHECK (cantidad > 0),
     CONSTRAINT production_oc_estado_ck
         CHECK (estado IN ('CREADA', 'EN_PRODUCCION', 'TERMINADA', 'ANULADA')),

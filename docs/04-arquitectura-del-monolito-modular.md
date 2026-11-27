@@ -136,9 +136,9 @@ Reglas visibles en el grafo:
 
 ## Seguridad y permisos
 
-- **Modelo RBAC desacoplado**: la base de datos almacena los roles (`nucleo.rol`) y su asignación (`nucleo.usuario_rol`), mientras que la matriz de permisos granulares por rol ("módulo.acción", ej. `inventory.transfer.crear`) se define directamente en código en el backend Django (`permissions.py`), garantizando control de versiones y evitando migraciones de permisos en BD.
+- **Modelo RBAC desacoplado**: `nucleo.usuario` almacena el rol principal (`admin`, `gerente`, `operario`, `vendedor`, validado por `CHECK` en BD) junto con los grupos/permisos estándar de `PermissionsMixin`, mientras que la matriz de permisos granulares por rol ("módulo.acción", ej. `inventory.transfer.crear`) se define directamente en código en el backend Django (`permissions.py`), garantizando control de versiones y evitando migraciones de permisos en BD.
 - **Visibilidad del stock por local (respuesta directa al requerimiento)**: por defecto, **cada local solo accede a su propio stock** — todas las consultas de inventario llegan filtradas por el `local` del usuario en sesión (RF-16, RF-17). Cada local ve, además, el resumen de stock de otros locales únicamente en modo consulta (cantidad disponible del mismo material/producto, para decidir transferencias), sin poder modificarlo.
-- Los usuarios con `is_global = true` (dueño, admin, gerencia) pueden cambiar de local en la barra superior e incluso ver el consolidado de los 3.
+- Los usuarios con `es_global = true` (dueño, admin, gerencia) pueden cambiar de local en la barra superior e incluso ver el consolidado de los 3.
 - Autenticación de la SPA con JWT; el token incluye el alcance (`local` o global) y **cada endpoint re-verifica** el alcance, sin confiar en el filtro del frontend.
 - Todo permiso fallido genera evento en bitácora de `audit`, registrando la denegación sin detallar datos sensibles.
 
@@ -146,10 +146,10 @@ Reglas visibles en el grafo:
 
 | Aspecto | Decisión |
 | --- | --- |
-| Backend | Django 5+ (Python 3.12+) con Django REST Framework: la API en JSON que consume la SPA |
-| Frontend | **React + Vite + Tailwind CSS**; SPA con router, `features` por módulo y componentes UI compartidos |
-| Autenticación | JWT (p. ej. SimpleJWT) con refresh; sesión de usuario con alcance por local o global |
-| Base de datos | PostgreSQL 14+ en el servidor central |
+| Backend | Django 6.1 (Python 3.12+) con Django REST Framework: la API en JSON que consume la SPA |
+| Frontend | **React 19 + Vite + Tailwind CSS v4**; SPA con router, `features` por módulo y componentes UI compartidos |
+| Autenticación | JWT (`rest_framework_simplejwt`) con refresh; sesión de usuario con alcance por local o global |
+| Base de datos | PostgreSQL 14+ en Neon (Lakebase Postgres serverless) |
 | Migraciones | Django `migrations` por app, aplicadas en orden de dependencia |
 | Almacenamiento de archivos | Disco del servidor (PDFs y documentos emitidos), ruta configurada, respaldo incluido en backup |
 | Despliegue | Docker Compose: nginx (estáticos de la SPA) + Django + PostgreSQL + backup |

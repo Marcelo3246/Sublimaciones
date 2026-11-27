@@ -3,7 +3,7 @@
 Implementa el parque de máquinas, órdenes de producción con ruta
 multi-local por pasos, consumo de material por medición y operaciones
 de máquina con class Meta y db_table explícito
-(ver tasks/tareas-grupo-base-de-datos.md).
+(ver docs/tasks/tareas-grupo-base-de-datos.md).
 
 Semántica: docs/modelo-datos/06.6-produccion.md y
 docs/ddl/06b.6-produccion.md (RF-30 a RF-35).

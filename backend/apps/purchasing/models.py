@@ -2,7 +2,7 @@
 
 Implementa empresas, proveedores, órdenes de compra y recepción,
 facturas de compra e historial de precios con class Meta y db_table
-explícito (ver tasks/tareas-grupo-base-de-datos.md).
+explícito (ver docs/tasks/tareas-grupo-base-de-datos.md).
 
 Semántica: docs/modelo-datos/06.5-compras.md y docs/ddl/06b.5-compras.md
 (RF-25 a RF-29).

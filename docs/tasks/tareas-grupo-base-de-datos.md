@@ -77,14 +77,14 @@ Documento operativo para la distribución del trabajo del **Grupo de Base de Dat
   - [x] Implementar modelo `Documento` (`documents_documento`): correlativo, plantilla (`ForeignKey`), entidad_tipo, entidad_id, generado_por (`ForeignKey('core.Usuario')`), fecha_emision, hash_seguridad, url_archivo.
 
 #### 🌱 Seeders Iniciales (`database/seeders/01_seed_nucleo.sql`)
-- [ ] Los 3 locales de la empresa:
+- [x] Los 3 locales de la empresa:
   - `L01`: Local Principal (Sede Central - Impresión y Corte)
   - `L02`: Local 2 (Sucursal 2 - Planchado y Confección)
   - `L03`: Local 3 (Sucursal 3 - Diseño y Acabado)
-- [ ] Superadministrador (`admin`) y usuarios de prueba para cada rol (`gerente_l1`, `operario_corte`, `vendedor_l1`).
-- [ ] Tasa de cambio oficial de arranque (USD/Bs).
-- [ ] Registros iniciales de contadores correlativos por local (FAC-000001, NE-000001, OP-000001).
-- [ ] Plantillas base HTML para Factura, Nota de Entrega y Presupuesto Comercial.
+- [x] Superadministrador (`admin`) cargado en Neon `production` (usuarios adicionales de prueba se crean vía `manage.py`).
+- [x] Tasa de cambio oficial de arranque (USD/Bs).
+- [x] Registros iniciales de contadores correlativos por local (`FAC`, `NE`, `OP`, `PRE`, `TRA`, `DES`, `COM` para `L01`–`L03`).
+- [x] Plantillas base HTML para Factura, Nota de Entrega, Presupuesto Comercial y Orden de Producción.
 
 ---
 
@@ -169,8 +169,8 @@ Documento operativo para la distribución del trabajo del **Grupo de Base de Dat
   - **L01:** Plóter de Sublimación Mimaki/Epson 1.60m, Cortadora Láser Textil.
   - **L02:** Plancha Térmica Industrial 80x100cm, Máquina de Coser Overlock 5 Hilos, Máquina Recta.
   - **L03:** Estampadora Combo 8 en 1 (Gorras, Tazas, Platos), Plancha de Transfer manual.
-- [x] Datos de prueba de órdenes de compra y órdenes de producción piloto demostrando el salto de ruta multi-local L1 $\rightarrow$ L2.
-- [ ] Carga en una BD limpia: *pendiente de la ejecución secuencial completa con seeders de núcleo (01) y catálogo (02).*
+- [x] Datos de prueba de órdenes de compra y órdenes de producción piloto demostrando el salto de ruta multi-local L1 $\rightarrow$ L2 (en `03_seed_compras_produccion.sql` para entornos dev/piloto; en Neon `production` solo se cargaron datos maestros).
+- [x] Carga en Neon `production`: *datos maestros (`empresa`, `proveedor`, `maquina`) cargados secuencialmente junto a `01_seed_nucleo.sql` y `02_seed_catalogo_inventario.sql`.*
 
 ---
 
@@ -218,7 +218,7 @@ Documento operativo para la distribución del trabajo del **Grupo de Base de Dat
   - Margen de ganancia: `1.30` (+30%).
   - Alícuota de impuesto: `0.16` (16% IVA).
   - Factor de conversión estándar: *no aplica en `pricing`; la conversión USD/Bs usa `core.TasaCambio`.*
-  - [ ] Carga en una BD limpia: *pendiente de `database/seeders/01_seed_nucleo.sql` (Enrrill), que debe crear el usuario `admin`; sin él el seeder omite la fila de `precios.parametro_formula` con aviso y basta re-ejecutarlo.*
+  - [x] Carga en Neon `production`: *cargado secuencialmente tras `01_seed_nucleo.sql` (con usuario `admin`, `parametro_formula`, `Consumidor Final`, matriz inicial y trabajadores).*
 - [x] Matriz de precios inicial para prendas estándar y servicios de sublimación por metro.
 - [x] Fichas de trabajadores y vendedores asignados a los locales L01, L02 y L03.
 

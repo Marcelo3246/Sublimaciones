@@ -2,7 +2,7 @@
 
 Implementa stock por local, lotes trazables, movimientos, guías de
 transferencia y niveles mínimos con class Meta y db_table explícito
-(ver tasks/tareas-grupo-base-de-datos.md).
+(ver docs/tasks/tareas-grupo-base-de-datos.md).
 """
 
 from django.db import models

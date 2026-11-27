@@ -102,17 +102,20 @@ Copiar el archivo de ejemplo `.env.example` a `.env` en la raíz y ajustar los v
 ### 6. Base de datos, migraciones y datos iniciales
 
 ```bash
-# 1. Crear base de datos local (ver database/00_crear_bd.sql):
+# 1. Crear base de datos local (opcional si no usas Neon, ver database/00_crear_bd.sql):
 psql -U postgres -f database/00_crear_bd.sql
 
-# 2. Aplicar migraciones limpias:
+# 2. Aplicar migraciones limpias (en Neon usar DATABASE_URL=$DATABASE_URL_UNPOOLED):
 python manage.py migrate
 
-# 3. Cargar datos iniciales (locales base L01, L02, L03):
-psql -U postgres -d dll_sublimados -f database/01_datos_iniciales.sql
-
-# 4. Crear superusuario administrador:
+# 3. Crear superusuario administrador:
 python manage.py createsuperuser
+
+# 4. Cargar seeders iniciales en orden de dependencias:
+psql "$DATABASE_URL" -f database/seeders/01_seed_nucleo.sql
+psql "$DATABASE_URL" -f database/seeders/02_seed_catalogo_inventario.sql
+psql "$DATABASE_URL" -f database/seeders/03_seed_compras_produccion.sql
+psql "$DATABASE_URL" -f database/seeders/04_seed_ventas_precios_rrhh.sql
 
 # 5. Iniciar servidor backend:
 python manage.py runserver

@@ -2,7 +2,7 @@
 
 Implementa categorías, subcategorías, unidades de medida, tallas,
 materiales, productos, variantes y servicios con class Meta y
-db_table explícito (ver tasks/tareas-grupo-base-de-datos.md).
+db_table explícito (ver docs/tasks/tareas-grupo-base-de-datos.md).
 """
 
 from django.db import models
@@ -31,7 +31,11 @@ class Categoria(TimeStampedModel, ActivoMixin):
             models.UniqueConstraint(
                 fields=["nombre", "tipo"],
                 name="catalog_categoria_uk",
-            )
+            ),
+            models.CheckConstraint(
+                condition=models.Q(tipo__in=TipoCategoria.values),
+                name="catalog_categoria_tipo_ck",
+            ),
         ]
 
     def __str__(self):
@@ -199,7 +203,11 @@ class Producto(TimeStampedModel, ActivoMixin):
             models.UniqueConstraint(
                 fields=["codigo"],
                 name="catalog_producto_codigo_uk",
-            )
+            ),
+            models.CheckConstraint(
+                condition=models.Q(tipo__in=TipoProducto.values),
+                name="catalog_producto_tipo_ck",
+            ),
         ]
 
     def __str__(self):

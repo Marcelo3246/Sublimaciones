@@ -8,7 +8,7 @@
 -- Referencias:
 --   docs/ddl/06b.5-compras.md
 --   docs/modelo-datos/06.5-compras.md
---   tasks/tareas-grupo-base-de-datos.md
+--   docs/tasks/tareas-grupo-base-de-datos.md
 -- =============================================================================
 
 CREATE SCHEMA IF NOT EXISTS compras;
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS compras.empresa (
     activo         BOOLEAN       NOT NULL DEFAULT true,
     creado_en      TIMESTAMPTZ   NOT NULL DEFAULT now(),
     actualizado_en TIMESTAMPTZ   NOT NULL DEFAULT now(),
-    CONSTRAINT empresa_rif_uk UNIQUE (rif)
+    CONSTRAINT empresa_rif_key UNIQUE (rif)
 );
 
 -- Un proveedor es el punto de contacto de una empresa (RF-25)
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS compras.orden_compra (
     activo         BOOLEAN       NOT NULL DEFAULT true,
     creado_en      TIMESTAMPTZ   NOT NULL DEFAULT now(),
     actualizado_en TIMESTAMPTZ   NOT NULL DEFAULT now(),
-    CONSTRAINT purchasing_orden_compra_numero_uk UNIQUE (numero_orden),
+    CONSTRAINT orden_compra_numero_orden_key UNIQUE (numero_orden),
     CONSTRAINT purchasing_oc_total_ck CHECK (total >= 0),
     CONSTRAINT purchasing_oc_estado_ck
         CHECK (estado IN ('BORRADOR', 'ENVIADA', 'PARCIAL', 'RECIBIDA', 'CERRADA', 'ANULADA')),

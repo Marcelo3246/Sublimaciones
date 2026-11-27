@@ -38,6 +38,12 @@ class PlantillaDocumento(TimeStampedModel, ActivoMixin):
         verbose_name_plural = "plantillas de documentos"
         db_table = "documentos.plantilla_documento"
         ordering = ["tipo", "nombre"]
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(tipo__in=TipoDocumento.values),
+                name="documents_plantilla_tipo_ck",
+            ),
+        ]
 
     def __str__(self):
         return f"{self.codigo} - {self.nombre} (v{self.version})"
@@ -102,7 +108,15 @@ class Documento(TimeStampedModel):
             models.UniqueConstraint(
                 fields=["tipo_documento", "local", "anio", "correlativo"],
                 name="documents_documento_correlativo_uk",
-            )
+            ),
+            models.CheckConstraint(
+                condition=models.Q(tipo_documento__in=TipoDocumento.values),
+                name="documents_documento_tipo_ck",
+            ),
+            models.CheckConstraint(
+                condition=models.Q(estado__in=EstadoDocumento.values),
+                name="documents_documento_estado_ck",
+            ),
         ]
         indexes = [
             models.Index(

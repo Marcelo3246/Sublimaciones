@@ -103,6 +103,12 @@ class Usuario(AbstractBaseUser, PermissionsMixin, TimeStampedModel, ActivoMixin)
         verbose_name = "usuario"
         verbose_name_plural = "usuarios"
         db_table = "nucleo.usuario"
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(rol__in=RolUsuario.values),
+                name="core_usuario_rol_ck",
+            ),
+        ]
 
     def __str__(self):
         return f"{self.nombre_usuario} ({self.get_rol_display()})"
@@ -135,6 +141,12 @@ class TasaCambio(TimeStampedModel, ActivoMixin):
             models.Index(
                 fields=["-fecha_vigencia", "-creado_en"],
                 name="core_tasa_vigencia_idx",
+            ),
+        ]
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(dolares_a_bs__gt=0),
+                name="core_tasa_cambio_valor_ck",
             ),
         ]
 
@@ -171,7 +183,11 @@ class ContadorCorrelativo(TimeStampedModel, ActivoMixin):
             models.UniqueConstraint(
                 fields=["tipo_comprobante", "local", "anio"],
                 name="core_contador_correlativo_uk",
-            )
+            ),
+            models.CheckConstraint(
+                condition=models.Q(tipo_comprobante__in=TipoComprobante.values),
+                name="core_contador_tipo_ck",
+            ),
         ]
 
     def __str__(self):

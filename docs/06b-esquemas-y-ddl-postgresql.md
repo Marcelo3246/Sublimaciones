@@ -19,30 +19,29 @@ Cada esquema tiene su propia nota con el SQL completo. Esta nota es el **índice
 
 ## Reglas resumidas
 
-- Montos `NUMERIC(14,2)` + `moneda`; cantidades `NUMERIC(12,4)`; porcentajes `NUMERIC(5,4)`.
-- Estados con `CHECK` en BD y `TextChoices` en Django.
-- Booleanos con estilo Django (`is_*`); borrado lógico con `is_active`.
+- Montos `NUMERIC(14,2)` + `moneda` (`USD` | `VES`); cantidades `NUMERIC(12,4)`; porcentajes `NUMERIC(5,4)`.
+- Estados y opciones cerradas con `CHECK` en BD y `TextChoices` en Django.
+- Booleanos de negocio en español (`activo`, `es_global`, `es_principal`, `es_predeterminada`); borrado lógico con `activo = false`.
 - FK con el patrón `<entidad>_id`.
-- Convenção completa en [07 Convenciones de base de datos](07-convenciones-de-base-de-datos.md).
+- Convención completa en [07 Convenciones de base de datos](07-convenciones-de-base-de-datos.md).
 
-## Bloque `Auditable`
+## Bloque común (`TimeStampedModel` + `ActivoMixin`)
 
-Toda tabla de negocio hereda este bloque (Django lo añade vía mixin abstract; se omite en el listado por legibilidad):
+Toda tabla de negocio hereda estos mixins abstractos de `backend/common/base_models.py`:
 
 ```sql
-creado_en     TIMESTAMPTZ NOT NULL DEFAULT now(),
+creado_en      TIMESTAMPTZ NOT NULL DEFAULT now(),
 actualizado_en TIMESTAMPTZ NOT NULL DEFAULT now(),
-creado_por_id BIGINT NULL,          -- FK a nucleo.usuario, la añade Django
-is_active     BOOLEAN NOT NULL DEFAULT true
+activo         BOOLEAN NOT NULL DEFAULT true
 ```
 
-Las bitácoras solo llevan `creado_en` (append-only: sin `UPDATE`, sin `DELETE`, sin `is_active`).
+Las bitácoras de `auditoria` solo llevan `creado_en` (append-only: sin `UPDATE`, sin `DELETE`, sin `activo`). `documentos.documento` hereda únicamente `TimeStampedModel` (usa `estado`: `'generado'` | `'anulado'`).
 
 ## Índice de esquemas
 
 | # | Esquema | Nota del DDL | Modelo | Tablas |
 | --- | --- | --- | --- | --- |
-| 1 | `nucleo` | [06b.1 nucleo](ddl/06b.1-nucleo.md) | [06.1 nucleo](modelo-datos/06.1-nucleo.md) | local, usuario, usuario_local, rol, usuario_rol, tasa_cambio, contador_correlativo |
+| 1 | `nucleo` | [06b.1 nucleo](ddl/06b.1-nucleo.md) | [06.1 nucleo](modelo-datos/06.1-nucleo.md) | local, usuario (+ usuario_groups, usuario_user_permissions), tasa_cambio, contador_correlativo |
 | 2 | `auditoria` | [06b.2 auditoria](ddl/06b.2-auditoria.md) | [06.2 auditoria](modelo-datos/06.2-auditoria.md) | bitacora_accion, bitacora_stock |
 | 3 | `catalogo` | [06b.3 catalogo](ddl/06b.3-catalogo.md) | [06.3 catalogo](modelo-datos/06.3-catalogo.md) | categoria, subcategoria, unidad_medida, talla, material, producto, variante_producto, servicio |
 | 4 | `inventario` | [06b.4 inventario](ddl/06b.4-inventario.md) | [06.4 inventario](modelo-datos/06.4-inventario.md) | stock, lote, movimiento_stock, guia_transferencia, linea_guia_transferencia, nivel_minimo |
