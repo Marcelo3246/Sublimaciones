@@ -1,0 +1,22 @@
+# ============================================================
+# DLL Sublimados — Configuración de flake8
+#
+#   flake8 src/
+#
+# Compatible con black: E203 y W503 están desactivados porque black
+# genera ese formato. El límite de línea es 88 (black) con 100 para
+# cadenas largas, help_text y URLs.
+# ============================================================
+[flake8]
+max-line-length = 100
+extend-ignore = E203, W503, E731
+exclude =
+    .git,
+    venv,
+    node_modules,
+    */migrations/*,
+    staticfiles,
+    media
+per-file-ignores =
+    */migrations/*.py: E501
+max-complexity = 10
