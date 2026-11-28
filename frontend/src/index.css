@@ -1,2 +1,65 @@
 @import "tailwindcss";
 
+/*
+ * Tokens de diseño tomados del archivo de Figma "Sublimados - Dirección visual".
+ * Cada --color-* genera sus clases de Tailwind: bg-marca, text-texto-secundario,
+ * border-borde-fuerte, etc.
+ */
+@theme {
+  --font-sans: "Geist Variable", "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Marca */
+  --color-marca: #6f2dbd;
+  --color-marca-hover: #5f25a5;
+  --color-marca-activo: #511f8d;
+  --color-marca-foco: #9a6fe2;
+  --color-marca-fondo: #f1eafb;
+
+  /* Superficies y texto */
+  --color-fondo: #f5f4f9;
+  --color-superficie: #ffffff;
+  --color-superficie-suave: #faf9fd;
+  --color-chip: #efedf5;
+  --color-texto: #1c1a26;
+  --color-texto-secundario: #5a566c;
+  --color-icono: #76728a;
+  --color-borde: #dddbe6;
+  --color-borde-fuerte: #908aa2;
+
+  /* Estados */
+  --color-peligro: #c42b3c;
+  --color-peligro-fondo: #fdf1f2;
+  --color-alerta: #b45309;
+  --color-alerta-fondo: #fef3c7;
+  --color-exito: #15803d;
+  --color-exito-fondo: #e8f6ec;
+  --color-info: #1d5fb8;
+  --color-info-fondo: #eaf1fb;
+
+  /* Menú lateral */
+  --color-menu: #3a1574;
+  --color-menu-texto: #d9cdf2;
+  --color-acento: #f5a524;
+
+  --radius-campo: 8px;
+  --radius-tarjeta: 12px;
+
+  --shadow-tarjeta: 0 1px 2px 0 rgb(53 21 97 / 0.04), 0 2px 8px -2px rgb(53 21 97 / 0.06);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-fondo font-sans text-sm text-texto antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-marca-foco);
+    outline-offset: 2px;
+  }
+}
