@@ -27,7 +27,7 @@ class Local(TimeStampedModel, ActivoMixin):
         "persona de contacto", max_length=100, blank=True, default=""
     )
 
-    class Meta:
+    class Meta:  # pyright: ignore[reportIncompatibleVariableOverride]
         verbose_name = "local"
         verbose_name_plural = "locales"
         db_table = "nucleo.local"
@@ -92,14 +92,14 @@ class Usuario(AbstractBaseUser, PermissionsMixin, TimeStampedModel, ActivoMixin)
     REQUIRED_FIELDS = ["correo"]
 
     @property
-    def is_active(self):
+    def is_active(self):  # pyright: ignore[reportIncompatibleVariableOverride]
         return self.activo
 
     @property
     def is_staff(self):
         return self.is_superuser or self.rol == RolUsuario.ADMINISTRADOR
 
-    class Meta:
+    class Meta:  # pyright: ignore[reportIncompatibleVariableOverride]
         verbose_name = "usuario"
         verbose_name_plural = "usuarios"
         db_table = "nucleo.usuario"
@@ -112,6 +112,13 @@ class Usuario(AbstractBaseUser, PermissionsMixin, TimeStampedModel, ActivoMixin)
 
     def __str__(self):
         return f"{self.nombre_usuario} ({self.get_rol_display()})"
+
+    def get_rol_display(self):
+        """Retorna la etiqueta legible del rol del usuario."""
+        for valor, etiqueta in RolUsuario.choices:
+            if str(valor) == str(self.rol):
+                return str(etiqueta)
+        return str(self.rol)
 
 
 class TasaCambio(TimeStampedModel, ActivoMixin):
@@ -132,7 +139,7 @@ class TasaCambio(TimeStampedModel, ActivoMixin):
         verbose_name="registrado por",
     )
 
-    class Meta:
+    class Meta:  # pyright: ignore[reportIncompatibleVariableOverride]
         verbose_name = "tasa de cambio"
         verbose_name_plural = "tasas de cambio"
         db_table = "nucleo.tasa_cambio"
@@ -175,7 +182,7 @@ class ContadorCorrelativo(TimeStampedModel, ActivoMixin):
     )
     anio = models.PositiveSmallIntegerField("año")
 
-    class Meta:
+    class Meta:  # pyright: ignore[reportIncompatibleVariableOverride]
         verbose_name = "contador correlativo"
         verbose_name_plural = "contadores correlativos"
         db_table = "nucleo.contador_correlativo"
