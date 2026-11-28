@@ -1,0 +1,33 @@
+# ============================================================
+# DLL Sublimados — Configuración de herramientas
+#
+#   black   → formateo        (ver .flake8 para el lint)
+#   isort   → orden de imports
+#   pytest  → pruebas
+#
+# La raíz del proyecto Django es la raíz del repositorio (`.`).
+# ============================================================
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+extend-exclude = '''
+/(
+    venv
+  | node_modules
+  | migrations
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+known_first_party = ["backend"]
+skip = ["venv", "node_modules", "migrations"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "backend.config.settings"
+pythonpath = ["."]
+python_files = ["test_*.py", "tests.py"]
+testpaths = ["backend", "tests"]
+addopts = "-ra --strict-markers"
